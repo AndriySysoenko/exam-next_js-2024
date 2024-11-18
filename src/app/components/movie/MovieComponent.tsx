@@ -1,3 +1,4 @@
+import { IMovie } from '@/app/models/IMovie';
 import React, {FC} from 'react';
 
 

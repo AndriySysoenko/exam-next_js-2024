@@ -11,10 +11,6 @@ const MoviesList:FC<MovieType> = ({movies}) => {
                     <Link href={'/movies/' + movie.id}>{movie.title} </Link>
                 </div>)
             }
-
-                <button>Prev</button>
-                <button>Next</button>
-
         </div>
     );
 };
