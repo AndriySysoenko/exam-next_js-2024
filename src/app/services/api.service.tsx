@@ -18,22 +18,22 @@ export const getMovies= async (): Promise<IMovie[]> => {
     }
 
     const data = await responseMovieDB.json();
-    console.log(data);
+    // console.log(data);
     return data.results;
 }
 
 export const getMovie= async (id:string): Promise<IMovie> => {
-    const moveiDetails = await fetch('https://api.themoviedb.org/3/movie' + '/' + id, {
+    const movieDetails = await fetch('https://api.themoviedb.org/3/movie' + '/' + id, {
         headers: {
             accept: 'application/json',
             Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIzOGRiOTEwNDY3ZTAwZWU0Y2FmZWZkZDQzMjhlOGEwNyIsIm5iZiI6MTczMTkxNTcyNy45MTg2MTk5LCJzdWIiOiI2NzM2ZjBiNTZiZDQ4ODliZmJjNzlkY2QiLCJzY29wZXMiOlsiYXBpX3JlYWQiXSwidmVyc2lvbiI6MX0.TtEHl9DPyW0vPB4WYcuZllBnLqp6xpQqxj1KrIGJr5U'
         }
     })
-    // if (!moveiDetails.ok) {
-    //     throw new Error(`HTTP error! status: ${moveiDetails.status}`);
+    // if (!movieDetails.ok) {
+    //     throw new Error(`HTTP error! status: ${movieDetails.status}`);
     // }
 
-    const data = await moveiDetails.json();
+    const data = await movieDetails.json();
     console.log(data)
     return data
 }
