@@ -48,13 +48,24 @@ export const getGenres = async (): Promise<ResponseGenre> => {
             Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIzOGRiOTEwNDY3ZTAwZWU0Y2FmZWZkZDQzMjhlOGEwNyIsIm5iZiI6MTczMTkxNTcyNy45MTg2MTk5LCJzdWIiOiI2NzM2ZjBiNTZiZDQ4ODliZmJjNzlkY2QiLCJzY29wZXMiOlsiYXBpX3JlYWQiXSwidmVyc2lvbiI6MX0.TtEHl9DPyW0vPB4WYcuZllBnLqp6xpQqxj1KrIGJr5U',
         }
     }).then(value => value.json())
-
-    // if (!responseGenre.ok) {
-    //     // console.error(`Error ${responseGenre.status}: ${responseGenre.statusText}`);
-    //     throw new Error("Failed to fetch genres");
-    // }
-
-    // const data:ResponseGenre = await response.json();
-    console.log(responseGenre)
+    
     return responseGenre;
 }
+
+export const getMoviesByGenre = async (genreId: number, page: number): Promise<MovieDBResponse> => {
+    console.log(genreId, page)
+    const response = await fetch(`https://api.themoviedb.org/3/discover/movie?with_genres=${genreId}&page=${page}`, {
+        headers: {
+            accept: "application/json",
+            Authorization: `Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIzOGRiOTEwNDY3ZTAwZWU0Y2FmZWZkZDQzMjhlOGEwNyIsIm5iZiI6MTczMTkxNTcyNy45MTg2MTk5LCJzdWIiOiI2NzM2ZjBiNTZiZDQ4ODliZmJjNzlkY2QiLCJzY29wZXMiOlsiYXBpX3JlYWQiXSwidmVyc2lvbiI6MX0.TtEHl9DPyW0vPB4WYcuZllBnLqp6xpQqxj1KrIGJr5U`,
+        },
+    });
+
+    if (!response.ok) {
+        throw new Error("Failed to fetch movies by genre");
+    }
+
+    const data:MovieDBResponse = await response.json();
+    console.log(data)
+    return data
+};
