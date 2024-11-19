@@ -40,19 +40,19 @@ export interface IGenre {
 	name: string;
 }
 export interface IProduction_company {
-	id: number;
-	logo_path: string;
-	name: string;
-	origin_country: string;
+	id: number,
+	logo_path: string,
+	name: string,
+	origin_country: string,
 }
 export interface IProduction_country {
-	iso_3166_1: string;
-	name: string;
+	iso_3166_1: string,
+	name: string,
 }
 export interface ISpoken_language {
-	english_name: string;
-	iso_639_1: string;
-	name: string;
+	english_name: string,
+	iso_639_1: string,
+	name: string
 }
 export interface IVideo {
 	iso_639_1: string;

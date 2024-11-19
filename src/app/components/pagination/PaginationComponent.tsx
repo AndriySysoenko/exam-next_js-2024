@@ -1,51 +1,32 @@
 "use client";
 
-import React, {useEffect, useState} from "react";
-import {IMovie} from "@/app/models/IMovie";
-import { getMovies } from "@/app/services/api.service";
-import MoviesList from "../movies/MoviesList";
+import React, {FC} from "react";
+import { useRouter } from "next/navigation";
 
-const PaginationComponent = () => {
-    const [movies, setMovies] = useState<IMovie[]>([]);
-    const [currentPage, setCurrentPage] = useState <number>(1);
-    const [totalPages] = useState <number>(500);
 
-    useEffect(() => {
-        try {
-            getMovies(currentPage)
-                .then(value => setMovies(value.results));
-            }catch (error) {
-                console.error(error);
-                }
-    }, [currentPage]);
+type PaginationProps = {
+    currentPage: number;
+};
 
-    const goToFirstPage = () => setCurrentPage(1);
-    const goToLastPage = () => setCurrentPage(totalPages);
-    const goToNextPage = () => {
-        if (currentPage < totalPages) setCurrentPage(currentPage + 1);
-    };
-    const goToPreviousPage = () => {
-        if (currentPage > 1) setCurrentPage(currentPage - 1);
+const PaginationComponent:FC<PaginationProps> = ({currentPage}) => {
+    const router = useRouter();
+    const totalPages:number = 500;
+
+    const handlePageChange = (newPage: number) => {
+        if (newPage >= 1 && newPage <= totalPages) router.push(`/movies?page=${newPage}`)
     };
 
     return (
         <div>
             <div>
-                <button onClick={goToFirstPage} disabled={currentPage === 1}>
-                    First
-                </button>
-                <button onClick={goToPreviousPage} disabled={currentPage === 1}>
-                    Prev
-                </button>
-                <button onClick={goToNextPage} disabled={currentPage === totalPages}>
-                    Next
-                </button>
-                <button onClick={goToLastPage} disabled={currentPage === totalPages}>
-                    Last
-                </button>
-            </div>
-            <div>
-                 <MoviesList movies={movies} />
+                <button onClick={() => handlePageChange(1)} disabled={currentPage === 1}>
+                    First</button>
+                <button onClick={() => handlePageChange(currentPage - 1)} disabled={currentPage === 1}>
+                    Prev</button>
+                <button onClick={() => handlePageChange(currentPage + 1)} disabled={currentPage === totalPages}>
+                    Next</button>
+                <button onClick={() => handlePageChange(totalPages)} disabled={currentPage === totalPages}>
+                    Last</button>
             </div>
         </div>
     );

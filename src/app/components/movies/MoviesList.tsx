@@ -8,7 +8,7 @@ const MoviesList:FC<MovieType> = ({movies}) => {
         <div>
             {
                 movies.map((movie:IMovie) => <div key={movie.id}>
-                    <Link href={'/movies/' + movie.id}>{movie.title} </Link>
+                    <Link href={`/movies/${movie.id}`}>{movie.title}</Link>
                 </div>)
             }
         </div>
