@@ -1,5 +1,5 @@
 import React from 'react';
-import PaginationComponent from '@/app/components/paginations/PaginationComponent';
+import PaginationComponent from '@/app/components/paginations/PaginationMovieList';
 import { getMovies } from '@/app/services/api.service';
 import MoviesList from '@/app/components/movies/MoviesList';
 
