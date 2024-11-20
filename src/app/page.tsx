@@ -5,7 +5,7 @@ import SearchForm from "./components/search/SearchForm";
 export default function Home() {
   return (
     <div>
-        <SearchForm/>
+        {/*<SearchForm/>*/}Home Page
     </div>
   );
 }
