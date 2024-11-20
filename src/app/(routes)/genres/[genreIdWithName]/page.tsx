@@ -17,7 +17,7 @@ const GenrePage = async ({params, searchParams }: GenreMoviesProps) => {
     const page = searchParams.page ? +searchParams.page : 1;
 
     const movies = await getMoviesByGenre(genreIdNum, page);
-    console.log(movies)
+    
     return (
         <div>
             <h1>Movies for Genre: {genreName.toUpperCase()}</h1>

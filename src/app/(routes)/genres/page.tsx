@@ -3,7 +3,7 @@ import {getGenres} from '@/app/services/api.service';
 import React from 'react';
 
 const GenresPage = async () => {
-    const genresObject = await getGenres();
+    // const genresObject = await getGenres();
     return (
         <div>
             <GenresList/>

@@ -1,4 +1,4 @@
-import {IGenre, IMovie} from "@/app/models/IMovie";
+import {IGenre, IKeyword, IMovie} from "@/app/models/IMovie";
 
 type MovieDBResponse = {
     page: number,
@@ -23,16 +23,16 @@ export const getMovies = async (page: number): Promise<MovieDBResponse> => {
     return data;
 }
 
-export const getMovie= async (id:string): Promise<IMovie> => {
-    const movieDetails = await fetch(`https://api.themoviedb.org/3/movie/${id}`, {
+export const getMovie= async (id:string, name:string): Promise<IMovie> => {
+    const movieDetails = await fetch(`https://api.themoviedb.org/3/movie/${id}${name}`, {
         headers: {
             accept: 'application/json',
             Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIzOGRiOTEwNDY3ZTAwZWU0Y2FmZWZkZDQzMjhlOGEwNyIsIm5iZiI6MTczMTkxNTcyNy45MTg2MTk5LCJzdWIiOiI2NzM2ZjBiNTZiZDQ4ODliZmJjNzlkY2QiLCJzY29wZXMiOlsiYXBpX3JlYWQiXSwidmVyc2lvbiI6MX0.TtEHl9DPyW0vPB4WYcuZllBnLqp6xpQqxj1KrIGJr5U'
         }
     })
-    if (!movieDetails.ok) {
-        throw new Error(`HTTP error! status: ${movieDetails.status}`);
-    }
+    // if (!movieDetails.ok) {
+    //     throw new Error(`HTTP error! status: ${movieDetails.status}`);
+    // }
 
     const data = await movieDetails.json();
     return data
@@ -69,3 +69,30 @@ export const getMoviesByGenre = async (genreId: number, page: number): Promise<M
     console.log(data)
     return data
 };
+
+type ResponseKeywords = {
+    page: number;
+    results: IKeyword[];
+    total_pages: number;
+    total_results: number;
+}
+
+export const searchMovieByKeyword = async (query: string, page: number): Promise<MovieDBResponse> => {
+    console.log(query, page)
+    const response = await fetch(`https://api.themoviedb.org/3/search/movie?query=${encodeURIComponent(query)}&page=${page}`, {
+        headers: {
+            accept: "application/json",
+            Authorization: `Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIzOGRiOTEwNDY3ZTAwZWU0Y2FmZWZkZDQzMjhlOGEwNyIsIm5iZiI6MTczMTkxNTcyNy45MTg2MTk5LCJzdWIiOiI2NzM2ZjBiNTZiZDQ4ODliZmJjNzlkY2QiLCJzY29wZXMiOlsiYXBpX3JlYWQiXSwidmVyc2lvbiI6MX0.TtEHl9DPyW0vPB4WYcuZllBnLqp6xpQqxj1KrIGJr5U`,
+        },
+    });
+
+    if (!response.ok) {
+        throw new Error("Failed to fetch movies by genre");
+    }
+
+    const data:MovieDBResponse = await response.json();
+    console.log(data)
+    return data
+};
+
+// https://api.themoviedb.org/3/search/movie?query=

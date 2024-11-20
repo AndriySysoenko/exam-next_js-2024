@@ -99,3 +99,8 @@ export interface IImage {
 	logos: ILogo[];
 	posters: IPoster[];
 }
+
+export interface IKeyword {
+	id: number;
+	name: string;
+}

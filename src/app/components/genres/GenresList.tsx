@@ -4,12 +4,12 @@ import Link from 'next/link';
 import {IGenre} from '@/app/models/IMovie';
 
 const GenresList = async () => {
-    const genresObject = await getGenres();
+    const {genres} = await getGenres();
 
     return (
         <div>
             {
-                genresObject.genres.map((genre: IGenre) => {
+                genres.map((genre: IGenre) => {
                     const genreSlug = genre.name.replace(/\s+/g, '-').toLowerCase();
                         return (
                         <div key={genre.id}>
