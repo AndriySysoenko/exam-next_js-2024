@@ -2,6 +2,7 @@
 
 import { useRouter } from 'next/navigation';
 import React, { useState } from 'react';
+import styles from './FormStyle.module.css';
 
 const SearchForm = () => {
     const [query, setQuery] = useState('');
@@ -15,13 +16,11 @@ const SearchForm = () => {
     };
 
     return (
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} >
             <input
-                type="text"
-                value={query}
-                onChange={(e) => setQuery(e.target.value)}
-                placeholder="Search by keyword..."/>
-            <button type="submit" >Search</button>
+                type="text" value={query} onChange={(e) => setQuery(e.target.value)}
+                placeholder="Search by keyword..." className={styles.formView}/>
+            <button type="submit" className={styles.searchButton} >Search</button>
         </form>
     );
 };

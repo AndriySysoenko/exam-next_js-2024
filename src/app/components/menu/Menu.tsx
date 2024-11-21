@@ -1,25 +1,30 @@
 import Link from 'next/link';
 import React from 'react';
 import SearchForm from '../search/SearchForm';
+import styles from './HeaderStyle.module.css'
 
 const Menu = () => {
     return (
-        <header>
-            <div>
-                <Link href={'/'}><img src={'https://i.imgur.com/6YIgTrt.png'} alt={'Movie Sandbox'}/></Link>
+        <header className={styles.headerStyle}>
+            <div >
+                <Link href={'/'}><img src={'https://i.imgur.com/wY6rCrc.png'} alt={'Movie Sandbox'}/></Link>
             </div>
-            <nav>
-                <ul>
-                    <li>
+            <nav >
+                <ul className={styles.menu}>
+                    <li className={styles.viewItem}>
                         <Link href={'/movies'}>Movies</Link>
                     </li>
-                    <li>
+                    <li className={styles.viewItem}>
                         <Link href={'/genres'}>Genres</Link>
                     </li>
 
                 </ul>
             </nav>
-            <SearchForm/>
+            <div><SearchForm/></div>
+            <div className={styles.userLogo}>
+                <img src={'https://i.imgur.com/W28GBLC.png'} alt={'Avatar'}/>
+                <p>Harry Potter</p>
+            </div>
         </header>
     );
 };

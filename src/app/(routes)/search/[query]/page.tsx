@@ -15,18 +15,18 @@ const KeywordSearchPage = async ({ searchParams }: KeywordSearchProps) => {
         return <div>No search query provided</div>;
     }
 
-    const {results: keywords, total_pages} = await searchMovieByKeyword(query, page);
+    const {results: moviesForKeywords, total_pages} = await searchMovieByKeyword(query, page);
 
     return (
         <div>
             <h1>Search Results for Keyword: "{query}"</h1>
-            <ul>
-                {keywords.map((keyword) => (
-                    <Link href={`/movies/${keyword.id}`} key={keyword.id}>
-                        <li><img src={`https://image.tmdb.org/t/p/w200/${keyword.poster_path}`} alt={keyword.title}></img>{keyword.title}</li>
+            <div>
+                {moviesForKeywords.map((movieForKeyword) => (
+                    <Link href={`/movies/${movieForKeyword.id}`} key={movieForKeyword.id}>
+                        <img src={`https://image.tmdb.org/t/p/w200/${movieForKeyword.poster_path}`} alt={movieForKeyword.title}></img>
                     </Link>
                 ))}
-            </ul>
+            </div>
             <div>
                 <PaginationSearchList currentPage={page} query={query} totalPages={total_pages}/>
             </div>

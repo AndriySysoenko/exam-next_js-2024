@@ -2,6 +2,7 @@
 
 import React from 'react';
 import { useRouter } from 'next/navigation';
+import styles from './PaginationStyle.module.css';
 
 type PaginationProps = {
     currentPage: number;
@@ -10,7 +11,6 @@ type PaginationProps = {
 };
 
 const PaginationSearchList = ({currentPage, query, totalPages}: PaginationProps) => {
-    // const totalPages:number = 500;
     const router = useRouter();
 
     const handlePageChange = (newPage: number) => {
@@ -18,14 +18,15 @@ const PaginationSearchList = ({currentPage, query, totalPages}: PaginationProps)
     };
 
     return (
-        <div>
+        <div className={styles.basicPaginationBlock}>
             <button
                 onClick={() => handlePageChange(currentPage - 1)}
-                disabled={currentPage <= 1}>Previous
+                disabled={currentPage <= 1} className={styles.button}>Prev
             </button>
+            <span>Page {currentPage} of {totalPages}</span>
             <button
                 onClick={() => handlePageChange(currentPage + 1)}
-                disabled={currentPage >= totalPages}>Next
+                disabled={currentPage >= totalPages} className={styles.button}>Next
             </button>
         </div>
     );

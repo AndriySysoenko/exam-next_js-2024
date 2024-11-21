@@ -1,0 +1,37 @@
+.headerStyle {
+    margin-top: 20px;
+    width: 1200px;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    gap: 20px;
+    border: solid 1px;
+    background: white;
+}
+
+.menu {
+    height: 50px;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    gap: 50px;
+    list-style: none;
+    font-size: 20px;
+}
+
+.viewItem>a{
+    text-decoration: none;
+    color: black;
+}
+.viewItem:hover{
+    transform: scale(1.5);
+}
+.viewItem>a:hover{
+    color: blue;
+}
+.userLogo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}

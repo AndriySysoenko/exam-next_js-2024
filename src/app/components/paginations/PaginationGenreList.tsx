@@ -2,15 +2,16 @@
 
 import {useRouter} from 'next/navigation';
 import React from 'react';
+import styles from './PaginationStyle.module.css';
 
 type PaginationProps = {
     currentPage: number;
     genreId: number;
+    totalPages: number;
     genreName: string;
 };
 
-const PaginationGenreList = ({ currentPage, genreId, genreName }: PaginationProps) => {
-    const totalPages:number = 500;
+const PaginationGenreList = ({ currentPage, genreId, genreName, totalPages }: PaginationProps) => {
     const genreSlug = `${genreId}-${genreName.replace(/\s+/g, '-').toLowerCase()}`;
     const router = useRouter();
 
@@ -27,9 +28,10 @@ const PaginationGenreList = ({ currentPage, genreId, genreName }: PaginationProp
     };
 
     return (
-        <div>
-            <button onClick={handlePrevious} disabled={currentPage === 1}>Prev</button>
-            <button onClick={handleNext} disabled={currentPage === totalPages}>Next</button>
+        <div className={styles.basicPaginationBlock}>
+            <button onClick={handlePrevious} disabled={currentPage === 1} className={styles.button}>Prev</button>
+            <span>Page {currentPage} of {totalPages}</span>
+            <button onClick={handleNext} disabled={currentPage === totalPages} className={styles.button}>Next</button>
         </div>
     );
 };

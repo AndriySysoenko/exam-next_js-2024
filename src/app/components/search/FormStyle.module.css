@@ -1,0 +1,14 @@
+.formView {
+    width: 300px;
+    height: 30px;
+    border-radius: 10px;
+    padding-left: 10px;
+}
+
+.searchButton{
+    width: 60px;
+    height: 35px;
+    border-radius: 10px;
+    color: white;
+    background: black;
+}

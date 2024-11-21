@@ -5,8 +5,8 @@ import React from 'react';
 
 
 type GenreMoviesProps = {
-    params: { genreIdWithName: string }, // Динамический сегмент маршрута
-    searchParams: { page?: string }    // Query-параметры
+    params: { genreIdWithName: string },
+    searchParams: { page?: string }
 };
 
 const GenrePage = async ({params, searchParams }: GenreMoviesProps) => {
@@ -16,14 +16,14 @@ const GenrePage = async ({params, searchParams }: GenreMoviesProps) => {
     const genreIdNum = +genreId;
     const page = searchParams.page ? +searchParams.page : 1;
 
-    const movies = await getMoviesByGenre(genreIdNum, page);
+    const { results: movies, total_pages } = await getMoviesByGenre(genreIdNum, page);
     
     return (
         <div>
             <h1>Movies for Genre: {genreName.toUpperCase()}</h1>
-            <MoviesList movies={movies.results}/>
+            <MoviesList movies={movies}/>
                 <div>
-                    <PaginationGenreList currentPage={page} genreId={genreIdNum} genreName={genreName}/>
+                    <PaginationGenreList currentPage={page} genreId={genreIdNum} genreName={genreName} totalPages={total_pages}/>
                 </div>
         </div>
     );
