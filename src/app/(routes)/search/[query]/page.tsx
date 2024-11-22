@@ -2,6 +2,7 @@ import Link from 'next/link';
 import React from 'react';
 import PaginationSearchList from '@/app/components/paginations/PaginationSearchList';
 import { searchMovieByKeyword } from '@/app/services/api.service';
+import PaginationComponent from '@/app/components/paginations/PaginationComponent';
 
 type KeywordSearchProps = {
     searchParams: { query: string; page?: string };
@@ -28,7 +29,13 @@ const KeywordSearchPage = async ({ searchParams }: KeywordSearchProps) => {
                 ))}
             </div>
             <div>
-                <PaginationSearchList currentPage={page} query={query} totalPages={total_pages}/>
+                {/*<PaginationSearchList currentPage={page} query={query} totalPages={total_pages}/>*/}
+                <PaginationComponent
+                    currentPage={page}
+                    totalPages={total_pages}
+                    basePath="/search/movie"
+                    queryParams={{ query: encodeURIComponent(query) }}
+                />
             </div>
         </div>
     );

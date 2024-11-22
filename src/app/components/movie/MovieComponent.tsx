@@ -1,6 +1,7 @@
 import { IMovie } from '@/app/models/IMovie';
 import React, {FC} from 'react';
 import styles from './MovieStyle.module.css'
+import RatingComponent from '../rating/RatingComponent';
 
 
 type MovieProps = {item:IMovie;}
@@ -13,7 +14,8 @@ const MovieComponent:FC<MovieProps> = ({item}) => {
                         <section className={styles.mainBlock}><img src={`https://image.tmdb.org/t/p/w400/${item.poster_path}`} alt={item.title}></img></section>
                         <main className={styles.mainBlock}>
                                 {item.title && <h1>{item.title}</h1>}
-                                {item.vote_average && <p><b>Vote Average</b>: {item.vote_average}</p>}
+                                <RatingComponent voteAverage={item.vote_average}/>
+                                {/*{item.vote_average && <p>Vote Average: {item.vote_average}</p>}*/}
                                 {item.vote_count && <p>Vote Count: {item.vote_count}</p>}
                                 {item.adult !== null && <p>Adult: {item.adult ? 'Yes' : 'No'}</p>}
                                 {item.budget !== null && <p>Budget: ${item.budget.toLocaleString()}</p>}

@@ -1,0 +1,36 @@
+.starRatingContainer {
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+}
+
+.ratingText {
+    margin-bottom: 8px;
+    font-size: 14px;
+    color: black;
+}
+
+.starRating {
+    font-size: 26px;
+    color: #ccc; /* Базовый цвет для пустых звезд */
+    display: inline-block;
+    position: relative;
+}
+
+.starRating.selected {
+    color: #ffb400; /* Полностью закрашенная звезда */
+}
+
+.starRating.halfSelected {
+    color: #ccc; /* Базовый цвет звезды */
+}
+
+.starRating.halfSelected::before {
+    content: '★';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 50%; /* Закрашиваем половину звезды */
+    overflow: hidden;
+    color: #ffb400; /* Цвет закрашенной части */
+}

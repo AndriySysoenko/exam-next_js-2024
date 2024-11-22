@@ -16,3 +16,17 @@
     color: white;
     font-size: 22px;
 }
+
+.button:hover {
+    background-color: #0056b3;
+}
+
+.button:disabled {
+    background-color: #cccccc;
+    color: #666666;
+    cursor: not-allowed;
+}
+
+.textCount{
+    color: white;
+}

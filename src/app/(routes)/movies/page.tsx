@@ -1,7 +1,7 @@
 import React from 'react';
-import PaginationComponent from '@/app/components/paginations/PaginationMovieList';
 import { getMovies } from '@/app/services/api.service';
 import MoviesList from '@/app/components/movies/MoviesList';
+import PaginationComponent from '@/app/components/paginations/PaginationComponent';
 
 const MoviesPage = async ({searchParams}: {searchParams: {page: string}}) => {
     const page = searchParams.page ? +searchParams.page : 1;
@@ -10,7 +10,7 @@ const MoviesPage = async ({searchParams}: {searchParams: {page: string}}) => {
     return (
         <div>
             <MoviesList movies={movies}/>
-            <PaginationComponent currentPage={page}/>
+            <PaginationComponent currentPage={page} totalPages={500} basePath="/movies"/>
         </div>
     );
 };

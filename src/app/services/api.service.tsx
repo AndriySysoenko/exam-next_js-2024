@@ -13,7 +13,7 @@ export const getMovie= async (id:string, name:string): Promise<IMovie> => {
 }
 
 type ResponseGenre = {
-    gеnres: IGenre[]
+    gеnres: IGenre[];
 }
 export const getGenres = async (): Promise<ResponseGenre> => {
     return await fetch('https://api.themoviedb.org/3/genre/movie/list', HeadersForRequest)

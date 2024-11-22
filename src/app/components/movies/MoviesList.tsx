@@ -2,6 +2,7 @@ import React, {FC} from 'react';
 import {IMovie} from "@/app/models/IMovie";
 import Link from "next/link";
 import styles from './AllMoviesStyle.module.css';
+import Rating from '../rating/RatingComponent';
 
 type MovieType = {movies:IMovie[]}
 const MoviesList:FC<MovieType> = ({movies}) => {
@@ -16,6 +17,7 @@ const MoviesList:FC<MovieType> = ({movies}) => {
                         }
                     } className={styles.textTitle}><img src={`https://image.tmdb.org/t/p/w200/${movie.poster_path}`}
                            alt={movie.title}></img></Link>
+                    <Rating voteAverage={movie.vote_average}/>
                 </div>)
             }
         </div>
