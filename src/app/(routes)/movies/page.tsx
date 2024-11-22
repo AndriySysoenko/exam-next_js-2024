@@ -1,10 +1,15 @@
-import React from 'react';
+import React, { FC } from 'react';
 import { getMovies } from '@/app/services/api.service';
 import MoviesList from '@/app/components/movies/MoviesList';
 import PaginationComponent from '@/app/components/paginations/PaginationComponent';
 
-const MoviesPage = async ({searchParams}: {searchParams: {page: string}}) => {
-    const page = searchParams.page ? +searchParams.page : 1;
+type SearchParams = { page?: string };
+type MyProps = {
+    searchParams: Promise<SearchParams>
+}
+const MoviesPage:FC<MyProps> = async ({searchParams}) => {
+    const params = await searchParams;
+    const page = params.page ? parseInt(params.page, 10) : 1;
     const {results: movies} = await getMovies(page);
    
     return (

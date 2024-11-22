@@ -1,28 +1,29 @@
 "use client";
 
 import { useRouter } from 'next/navigation';
-import React, { useState } from 'react';
+import React from 'react';
 import styles from './FormStyle.module.css';
+import {SubmitHandler, useForm } from 'react-hook-form';
+
+type SearchFormInputs = {
+    query: string;
+};
 
 const SearchForm = () => {
-    const [query, setQuery] = useState('');
+    const { register, handleSubmit } = useForm<SearchFormInputs>();
     const router = useRouter();
 
-    const handleSubmit = (e: React.FormEvent) => {
-        e.preventDefault();
-        if (query.trim()) {
-            router.push(`/search/keyword?query=${encodeURIComponent(query)}`);
+    const onSubmit: SubmitHandler<SearchFormInputs> = (data) => {
+        if (data.query.trim()) {
+            router.push(`/search/movie?query=${encodeURIComponent(data.query)}`);
         }
     };
 
     return (
-        <form onSubmit={handleSubmit} >
-            <input
-                type="text" value={query} onChange={(e) => setQuery(e.target.value)}
-                placeholder="Search by keyword..." className={styles.formView}/>
-            <button type="submit" className={styles.searchButton} >Search</button>
-        </form>
-    );
+        <form onSubmit={handleSubmit(onSubmit)}>
+            <input type="text" placeholder="Search for movies..." {...register('query', {required: true})} className={styles.formView}/>
+            <button type="submit" className={styles.searchButton}>Search</button>
+        </form>)
 };
 
 export default SearchForm;

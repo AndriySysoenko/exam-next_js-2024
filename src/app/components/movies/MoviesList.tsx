@@ -15,8 +15,7 @@ const MoviesList:FC<MovieType> = ({movies}) => {
                             pathname: `/movies/${movie.id}`,
                             query: {name: movie.title}
                         }
-                    } className={styles.textTitle}><img src={`https://image.tmdb.org/t/p/w200/${movie.poster_path}`}
-                           alt={movie.title}></img></Link>
+                    } className={styles.textTitle}><img src={`https://image.tmdb.org/t/p/w200/${movie.poster_path}`} alt={movie.title}></img></Link>
                     <Rating voteAverage={movie.vote_average}/>
                 </div>)
             }

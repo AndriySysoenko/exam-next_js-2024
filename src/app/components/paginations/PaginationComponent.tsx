@@ -8,14 +8,14 @@ import styles from "./PaginationStyle.module.css";
 type PaginationProps = {
     currentPage: number;
     totalPages: number;
-    basePath: string; // Базовый путь, например "/movies", "/genres/slug" или "/search/movie"
-    queryParams?: Record<string, string | number>; // Дополнительные параметры запроса
+    basePath: string;
+    queryParams?: Record<string, string | number>;
 };
 
 const PaginationComponent:FC<PaginationProps> = ({ currentPage, totalPages, basePath, queryParams = {} }) => {
     const router = useRouter();
-    const maxPages = 500;
-    const limitedTotalPages = totalPages > maxPages ? maxPages : totalPages;
+    const maxPages: number = 500;
+    const limitedTotalPages:number = totalPages > maxPages ? maxPages : totalPages;
     const buildUrl = (page: number) => {
         const params = new URLSearchParams({ ...queryParams, page: page.toString() });
         return `${basePath}?${params.toString()}`;
@@ -30,31 +30,17 @@ const PaginationComponent:FC<PaginationProps> = ({ currentPage, totalPages, base
     return (
         <div className={styles.basicPaginationBlock}>
             <Link href={buildUrl(1)}>
-                <button disabled={currentPage === 1} className={styles.button}>
-                    First
-                </button>
+                <button disabled={currentPage === 1} className={styles.button}> First </button>
             </Link>
-            <button
-                onClick={() => handlePageChange(currentPage - 1)}
-                disabled={currentPage === 1}
-                className={styles.button}
-            >
-                Prev
-            </button>
+                <button onClick={() => handlePageChange(currentPage - 1)} disabled={currentPage === 1}
+                    className={styles.button}> Prev </button>
             <span className={styles.textCount}>
                 Page {currentPage} of {limitedTotalPages}
             </span>
-            <button
-                onClick={() => handlePageChange(currentPage + 1)}
-                disabled={currentPage === limitedTotalPages}
-                className={styles.button}
-            >
-                Next
-            </button>
+                <button onClick={() => handlePageChange(currentPage + 1)} disabled={currentPage === limitedTotalPages}
+                    className={styles.button}> Next </button>
             <Link href={buildUrl(limitedTotalPages)}>
-                <button disabled={currentPage === limitedTotalPages} className={styles.button}>
-                    Last
-                </button>
+                <button disabled={currentPage === limitedTotalPages} className={styles.button}> Last </button>
             </Link>
         </div>
     );

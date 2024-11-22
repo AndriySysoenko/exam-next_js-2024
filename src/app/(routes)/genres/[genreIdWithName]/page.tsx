@@ -1,8 +1,7 @@
 import MoviesList from '@/app/components/movies/MoviesList';
 import PaginationComponent from '@/app/components/paginations/PaginationComponent';
-// import PaginationGenreList from '@/app/components/paginations/PaginationGenreList';
 import { getMoviesByGenre } from '@/app/services/api.service';
-import React from 'react';
+import React, { FC } from 'react';
 
 
 type GenreMoviesProps = {
@@ -10,7 +9,7 @@ type GenreMoviesProps = {
     searchParams: { page?: string }
 };
 
-const GenrePage = async ({params, searchParams }: GenreMoviesProps) => {
+const GenrePage:FC<GenreMoviesProps> = async ({params, searchParams }) => {
     const [genreId, ...genreNameParts] = params.genreIdWithName.split('-');
     const genreName = genreNameParts.join(' ');
     const genreIdNum = +genreId;

@@ -15,7 +15,6 @@ const MovieComponent:FC<MovieProps> = ({item}) => {
                         <main className={styles.mainBlock}>
                                 {item.title && <h1>{item.title}</h1>}
                                 <RatingComponent voteAverage={item.vote_average}/>
-                                {/*{item.vote_average && <p>Vote Average: {item.vote_average}</p>}*/}
                                 {item.vote_count && <p>Vote Count: {item.vote_count}</p>}
                                 {item.adult !== null && <p>Adult: {item.adult ? 'Yes' : 'No'}</p>}
                                 {item.budget !== null && <p>Budget: ${item.budget.toLocaleString()}</p>}
