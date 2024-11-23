@@ -9,8 +9,11 @@ type MyProps = {
 }
 const MoviesPage:FC<MyProps> = async ({searchParams}) => {
     const params = await searchParams;
-    const page = params.page ? parseInt(params.page, 10) : 1;
+    const page:number = params.page ? +params.page : 1;
     const {results: movies} = await getMovies(page);
+    if (!movies || movies.length === 0) {
+        return <div>No movies to display</div>;
+    }
    
     return (
         <div>

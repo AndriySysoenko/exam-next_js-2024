@@ -3,26 +3,34 @@
 import { useRouter } from 'next/navigation';
 import React from 'react';
 import styles from './FormStyle.module.css';
-import {SubmitHandler, useForm } from 'react-hook-form';
+import {useForm } from 'react-hook-form';
+import { joiResolver } from '@hookform/resolvers/joi';
+import { searchFormValidator } from '@/app/validators/searchForm.validator';
 
 type SearchFormInputs = {
     query: string;
 };
 
 const SearchForm = () => {
-    const { register, handleSubmit } = useForm<SearchFormInputs>();
+    const { register, handleSubmit, formState: { errors } } = useForm<SearchFormInputs>({
+        resolver: joiResolver(searchFormValidator)});
     const router = useRouter();
 
-    const onSubmit: SubmitHandler<SearchFormInputs> = (data) => {
-        if (data.query.trim()) {
-            router.push(`/search/movie?query=${encodeURIComponent(data.query)}`);
+    const customHandler = (formQuery: SearchFormInputs) => {
+        if (formQuery.query.trim()) {
+            router.push(`/search/movie?query=${encodeURIComponent(formQuery.query)}`);
         }
     };
 
     return (
-        <form onSubmit={handleSubmit(onSubmit)}>
-            <input type="text" placeholder="Search for movies..." {...register('query', {required: true})} className={styles.formView}/>
+        <form onSubmit={handleSubmit(customHandler)}>
+            <input type="text" placeholder="Search for movies..." {...register('query')} className={styles.formView}/>
             <button type="submit" className={styles.searchButton}>Search</button>
+            {errors.query && (
+                <p style={{color: "red", fontSize: "12px"}}>
+                    {errors.query.message}
+                </p>
+            )}
         </form>)
 };
 

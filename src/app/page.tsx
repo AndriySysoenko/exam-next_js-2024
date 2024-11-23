@@ -1,11 +1,12 @@
-import Image from "next/image";
 import styles from "./page.module.css";
-import SearchForm from "./components/search/SearchForm";
+import MoviesList from "./components/movies/MoviesList";
+import {getMovies} from "./services/api.service";
 
-export default function Home() {
+export default async function Home () {
+    const {results: movies} = await getMovies(2);
   return (
-    <div>
-        {/*<SearchForm/>*/}Home Page
+    <div className={styles.basicBlock}>
+        <main className={styles.mainBlock}><MoviesList movies={movies}/></main>
     </div>
   );
 }

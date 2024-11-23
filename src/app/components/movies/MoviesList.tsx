@@ -6,6 +6,7 @@ import Rating from '../rating/RatingComponent';
 
 type MovieType = {movies:IMovie[]}
 const MoviesList:FC<MovieType> = ({movies}) => {
+
     return (
         <div className={styles.basicMovieBlock}>
             {
