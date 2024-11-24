@@ -6,23 +6,23 @@
 
 .ratingText {
     margin-bottom: 8px;
-    font-size: 14px;
+    font-size: 16px;
     color: black;
 }
 
 .starRating {
     font-size: 26px;
-    color: #ccc; /* Базовый цвет для пустых звезд */
+    color: #ccc;
     display: inline-block;
     position: relative;
 }
 
 .starRating.selected {
-    color: #ffb400; /* Полностью закрашенная звезда */
+    color: #ffb400;
 }
 
 .starRating.halfSelected {
-    color: #ccc; /* Базовый цвет звезды */
+    color: #ccc;
 }
 
 .starRating.halfSelected::before {

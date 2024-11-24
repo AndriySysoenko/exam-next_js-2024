@@ -1,25 +1,24 @@
 "use client";
 
 import React from 'react';
-import styles from './RatingStyle.module.css'; // Подключаем стили
+import styles from './RatingStyle.module.css';
 
 type RatingProps = {
     voteAverage: number; // Рейтинг от 0 до 10
 };
 
-const Rating: React.FC<RatingProps> = ({ voteAverage }) => {
-    // Переводим рейтинг из 10-балльной системы в 5-балльную
+const StarRating: React.FC<RatingProps> = ({ voteAverage }) => {
+
     const normalizedRating = Math.round((voteAverage / 2) * 10) / 10;
 
     const stars = [];
     for (let i = 0; i < 5; i++) {
         let klass = styles.starRating;
 
-        // Полностью закрашенная звезда
         if (normalizedRating >= i + 1) {
             klass += ` ${styles.selected}`;
         }
-        // Частично закрашенная звезда
+
         else if (normalizedRating > i) {
             klass += ` ${styles.halfSelected}`;
         }
@@ -40,4 +39,4 @@ const Rating: React.FC<RatingProps> = ({ voteAverage }) => {
     );
 };
 
-export default Rating;
+export default StarRating;

@@ -25,7 +25,9 @@ export interface IMovie {
 	video: boolean;
 	vote_average: number;
 	vote_count: number;
-	videos: IVideo[];
+	videos: {
+		results: IVideo[];
+	};
 	images: IImage;
 }
 export interface ICollection {

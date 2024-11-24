@@ -13,7 +13,7 @@ export const getMovies = async (page: number): Promise<MovieDBResponse> => {
 
 export const getMovie= async (id:string, name:string): Promise<IMovie> => {
     try{
-    return await fetch(`https://api.themoviedb.org/3/movie/${id}${name}`, HeadersForRequest)
+    return await fetch(`https://api.themoviedb.org/3/movie/${id}?append_to_response=videos`, HeadersForRequest)
         .then(value => value.json());
     }catch (error) {
         console.error("Error fetching movies:", error);

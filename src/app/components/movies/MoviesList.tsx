@@ -2,13 +2,13 @@ import React, {FC} from 'react';
 import {IMovie} from "@/app/models/IMovie";
 import Link from "next/link";
 import styles from './AllMoviesStyle.module.css';
-import Rating from '../rating/RatingComponent';
+import StarRating from '../rating/StarRatingComponent';
 
 type MovieType = {movies:IMovie[]}
 const MoviesList:FC<MovieType> = ({movies}) => {
 
     return (
-        <div className={styles.basicMovieBlock}>
+        <main className={styles.basicMovieBlock}>
             {
                 movies.map((movie:IMovie) => <div key={movie.id} className={styles.movieCard}>
                     <Link href={
@@ -17,10 +17,10 @@ const MoviesList:FC<MovieType> = ({movies}) => {
                             query: {name: movie.title}
                         }
                     } className={styles.textTitle}><img src={`https://image.tmdb.org/t/p/w200/${movie.poster_path}`} alt={movie.title}></img></Link>
-                    <Rating voteAverage={movie.vote_average}/>
+                    <StarRating voteAverage={movie.vote_average}/>
                 </div>)
             }
-        </div>
+        </main>
     );
 };
 

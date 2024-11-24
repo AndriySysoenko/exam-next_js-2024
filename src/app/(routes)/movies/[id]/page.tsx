@@ -8,6 +8,7 @@ type MyParams = {
 }
 const MoviePage = async ({params}: {params: MyParams}) => {
     const movie = await getMovie(params.id, params.name)
+    console.log(movie)
 
     return (
         <div>
