@@ -12,13 +12,17 @@ type SearchFormInputs = {
 };
 
 const SearchForm = () => {
-    const { register, handleSubmit, formState: { errors } } = useForm<SearchFormInputs>({
+    const { register,
+        handleSubmit,
+        reset,
+        formState: { errors } } = useForm<SearchFormInputs>({
         resolver: joiResolver(searchFormValidator)});
     const router = useRouter();
 
     const customHandler = (formQuery: SearchFormInputs) => {
         if (formQuery.query.trim()) {
             router.push(`/search/movie?query=${encodeURIComponent(formQuery.query)}`);
+            reset();
         }
     };
 
