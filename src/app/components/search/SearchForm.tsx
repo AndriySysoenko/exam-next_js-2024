@@ -15,8 +15,7 @@ const SearchForm = () => {
     const { register,
         handleSubmit,
         reset,
-        formState: { errors } } = useForm<SearchFormInputs>({
-        resolver: joiResolver(searchFormValidator)});
+        formState: { errors } } = useForm<SearchFormInputs>({resolver: joiResolver(searchFormValidator)});
     const router = useRouter();
 
     const customHandler = (formQuery: SearchFormInputs) => {

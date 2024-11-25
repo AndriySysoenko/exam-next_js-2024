@@ -1,3 +1,4 @@
+import GenresList from '@/app/components/genres/GenresList';
 import MoviesList from '@/app/components/movies/MoviesList';
 import PaginationComponent from '@/app/components/paginations/PaginationComponent';
 import {getMoviesByGenre} from '@/app/services/api.service';

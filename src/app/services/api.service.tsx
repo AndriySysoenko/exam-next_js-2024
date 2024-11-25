@@ -1,6 +1,7 @@
-import {IGenre, IMovie} from "@/app/models/IMovie";
+import {IMovie} from "@/app/models/IMovie";
 import {MovieDBResponse} from "../models/MovieDBResponse";
 import {HeadersForRequest} from "../components/headers/HeadersForRequest";
+import { IGenre } from "../models/IGenre";
 
 export const getMovies = async (page: number): Promise<MovieDBResponse> => {
     try{

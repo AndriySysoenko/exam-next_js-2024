@@ -1,3 +1,5 @@
+import { IGenre } from "./IGenre";
+
 export interface IMovie {
 	adult: boolean;
 	backdrop_path: string;
@@ -37,10 +39,6 @@ export interface ICollection {
 	backdrop_path: string
 }
 
-export interface IGenre {
-	id: number;
-	name: string;
-}
 export interface IProduction_company {
 	id: number,
 	logo_path: string,
